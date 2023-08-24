@@ -1,0 +1,66 @@
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .product-image {
+    width: 100%;
+    max-width: 500px;
+    object-fit: cover;
+  }
+  
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .product-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .product-price {
+    font-size: 20px;
+    color: #777;
+  }
+  
+  .product-description {
+    font-size: 16px;
+    color: #2D190C;
+    margin-top: 10px;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px; /* Adjust the width to the desired size */
+    height: 150px; /* Maintain the aspect ratio */
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+
+  .Slogan {
+    flex: 1; /* Take up remaining space */
+    font-size: 1.2rem; /* Adjust the font size as needed */
+    margin: 0; /* Remove any default margins */
+    white-space: nowrap; /* Prevent wrap, keep the slogan in a single line */
+    overflow: hidden; /* Hide any overflowed text */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
+  }

@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <footer>
-            <h3>This is a mock e-commerce site</h3>
+            <h5>Copyright © 2023 CryOfCommerce Inc. All Rights Reserved.</h5>
         </footer>
     );
 };
