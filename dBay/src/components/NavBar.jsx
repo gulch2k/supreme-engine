@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
-import logo from '../assets/logo.png'; // Replace this path with your logo image file path
+import logo from '../assets/logo.png';
 
 function Navbar() {
-  // State to keep track of logged in user
-  const isLoggedIn = false; // Set to true if user is logged in
-  const username = "John"; // Replace with actual username if available
   return (
     <nav className="navbar">
       <ul className="nav-list">
@@ -29,7 +26,7 @@ function Navbar() {
         </li>
         <li className="nav-item">
           <Link to="/user" className="nav-link">
-            Welcome
+            Welcome, Warlord
           </Link>
         </li>
         <li className="nav-item"></li>
