@@ -48,19 +48,4 @@
     align-items: center;
   }
 
-  .logo {
-    display: flex;
-    flex-wrap: wrap;
-    width: 150px; /* Adjust the width to the desired size */
-    height: 150px; /* Maintain the aspect ratio */
-    margin-right: 10px; /* Adjust the margin as needed */
-  }
-
-  .Slogan {
-    flex: 1; /* Take up remaining space */
-    font-size: 1.2rem; /* Adjust the font size as needed */
-    margin: 0; /* Remove any default margins */
-    white-space: nowrap; /* Prevent wrap, keep the slogan in a single line */
-    overflow: hidden; /* Hide any overflowed text */
-    text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
-  }
+ 
