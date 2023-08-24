@@ -13,12 +13,7 @@
     padding: 20px;
     margin: 20px;
   }
-  
-  .product-image {
-    width: 100%;
-    max-width: 500px;
-    object-fit: cover;
-  }
+
   
   .product-info {
     display: flex;

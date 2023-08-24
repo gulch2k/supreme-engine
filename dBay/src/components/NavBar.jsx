@@ -9,6 +9,7 @@ function Navbar() {
       <ul className="nav-list">
       <img src={logo} alt="Logo" className="logo" />
         <h1 className='Slogan'>We Have KILLER Prices!!🪓🩸</h1>
+        <span className="span-line"></span>
         <li className="nav-item">
           <Link to="/login" className="nav-link">
             Login
