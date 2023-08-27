@@ -27,7 +27,7 @@ function ProductDetails() {
         <h2 className="product-title">{product.title}</h2>
         <p className="product-price">${product.price}</p>
         <p className="product-description">{product.description}</p>
-        {/* Add more details as needed */}
+        <p className="product-ratings">{product.ratings}</p>
       </div>
     </div>
   );

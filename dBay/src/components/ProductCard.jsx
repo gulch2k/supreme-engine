@@ -10,6 +10,7 @@ function ProductCard({ product }) {
         <div className="product-info">
           <h5 className="product-title">{product.title}</h5>
           <p className="product-price">${product.price}</p>
+          <p className="product-ratings">${product.ratings}</p>
         </div>
       </Link>
     </div>
