@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import  useAuth  from "../components/AuthContext.jsx";
 import "../styles/Navbar.css";
 import logo from '../assets/logo.png';
 
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <nav className="navbar">
       <ul className="nav-list">
@@ -11,10 +14,10 @@ function Navbar() {
         <h1 className='Slogan'>We Have KILLER Prices!!🪓🩸</h1>
         <span className="span-line"></span>
         <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
         </li>
+        {!isLoggedIn && <Link to="/LogIn" className="nav-link">
+            Log in
+          </Link>}
         <li className="nav-item">
           <Link to="/signup" className="nav-link">
             Signup
@@ -26,9 +29,6 @@ function Navbar() {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/user" className="nav-link">
-            Welcome, Warlord
-          </Link>
         </li>
         <li className="nav-item"></li>
       </ul>
