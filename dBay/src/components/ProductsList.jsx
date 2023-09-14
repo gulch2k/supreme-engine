@@ -33,9 +33,17 @@ function ProductsList() {
     setSortType(type);
   };
 
+  // Check if a category is selected. If so, filter the products to only include
+// products in the selected category. If not, use all products.
+
   const filteredProducts = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
     : products;
+
+// Check if a sort type is selected. If so, sort the filtered products based on
+// the sort type. If "price" is selected, sort by price in ascending order. If
+// "name" is selected, sort alphabetically by product title. If no sort type 
+// is selected, use the filtered products as is.
 
   const sortedProducts = sortType
     ? [...filteredProducts].sort((a, b) => {
@@ -47,6 +55,9 @@ function ProductsList() {
         return 0;
       })
     : filteredProducts;
+
+    // Function to handle going back to view all categories. It resets the selected
+// category state to an empty string, which will cause all products to be displayed.
 
     const handleGoBack = () => {
       setSelectedCategory("");
