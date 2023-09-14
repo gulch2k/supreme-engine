@@ -59,13 +59,13 @@ function ProductsList() {
       <div className="categories">
         <h2>All Categories</h2>
         <div className="category-panels">
-          <button onClick={handleGoBack}>Go Back</button>
           {categories.map((category) => (
             <div className="category-panel" onClick={() => handleCategoryClick(category)} key={category}>
               {category}
             </div>
           ))}
         </div>
+        <button onClick={handleGoBack}>Go Back</button>
       </div>
       <div className="sorting">
         <h2>Sort By</h2>
