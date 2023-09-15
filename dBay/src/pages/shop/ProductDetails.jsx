@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import '../styles/ProductDetails.css'
+import { CartProvider } from '../../components/CartContext';
+import '../../styles/ProductDetails.css'
+
+const API_URL = 'https://fakestoreapi.com/';
 
 function ProductDetails() {
+  const { addToCart } = useContext(CartProvider);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     async function fetchProduct() {
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const response = await fetch(`${API_URL}/products/${productId}`);
       const productData = await response.json();
       setProduct(productData);
     }
@@ -28,6 +32,7 @@ function ProductDetails() {
         <p className="product-price">${product.price}</p>
         <p className="product-description">{product.description}</p>
         <p className="product-ratings">{product.ratings}</p>
+        <button onClick={() => addToCart(product)}>Add to Cart</button>
       </div>
     </div>
   );

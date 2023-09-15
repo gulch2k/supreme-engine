@@ -31,13 +31,6 @@ const fetchAllUsers = async () => {
 
 fetchAllUsers();
 
-const fetchUser = async () => {
-    try {
-        const response = await fetch('https://fakestoreapi.com/users/')
-    }
-}
-
-
 
 // LOGGING IN FUNCTIONS
 async function loginUser(credentials) {
@@ -73,7 +66,6 @@ const LoginForm = ({ setToken }) => {
     });
     if (token) {
         setToken(token);
-        setIsLoggedIn(true);
         setLoginSuccess("You have successfully logged in!");
         navigate("/");
       } else {

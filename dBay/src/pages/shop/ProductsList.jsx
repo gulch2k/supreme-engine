@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
-import "../styles/ProductList.css";
+import ProductCard from "../../components/ProductCard";
+import { fetchAllProducts, fetchUniqueCategories } from "../../products";
+import Cart from '../cart/Cart';
+import "../../styles/ProductList.css";
 
 function ProductsList() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortType, setSortType] = useState("");
-
+  
   useEffect(() => {
-    const fetchAllProducts = async () => {
-      // Fetch all products
-      const response = await fetch("https://fakestoreapi.com/products");
-      const productsData = await response.json();
+    const fetchData = async () => {
+      const productsData = await fetchAllProducts();
       setProducts(productsData);
 
-      // Extract unique categories from products
-      const uniqueCategories = Array.from(
-        new Set(productsData.map((product) => product.category))
-      );
-      setCategories(uniqueCategories.sort());
+      const uniqueCategories = await fetchUniqueCategories();
+      setCategories(uniqueCategories);
     };
 
-    fetchAllProducts();
+    fetchData();
   }, []);
+
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);

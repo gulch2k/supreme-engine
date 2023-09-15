@@ -1,8 +1,7 @@
-import { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 export default function useToken() {
-    const UserContext = React.createContext();
-    const getToken = () => {
+        const getToken = () => {
         const tokenString = localStorage.getItem('token');
         const userToken = JSON.parse(tokenString);
         return userToken?.token
