@@ -9,35 +9,17 @@ function Navbar() {
   
 
   return (
-    <nav className="navbar">
-      <ul className="nav-list">
+    <div className="navbar">
       <img src={logo} alt="Logo" className="logo" />
         <h1 className='Slogan'>We Have KILLER Prices!!🪓🩸</h1>
         <span className="span-line"></span>
-        <li className="nav-item">
-          {isLoggedIn && <p>Welcome, {firstName}!</p>}
-        </li>
-        {!isLoggedIn && (
-          <Link to="/LogIn" className="nav-link">
-            Log in
-          </Link>
-        )}
-        <li className="nav-item">
-          <Link to="/signup" className="nav-link">
-            Signup
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/cart" className="nav-link">
-            See Cart
-          </Link>
-        </li>
-        <li className="nav-item">
-        </li>
-        <li className="nav-item"></li>
-      </ul>
-    </nav>
+        <div className="links">
+        <Link to="/Login">Log in</Link>
+        <Link to="/"> Shop </Link>
+        <Link to="/contact"> Contact </Link>
+      </div>
+      </div>
   );
-}
+};
 
 export default Navbar;

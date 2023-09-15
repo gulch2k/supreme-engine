@@ -1,7 +1,9 @@
 .productsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
 }
 
 .product-details {
@@ -19,7 +21,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
   }
   
   .product-title {
@@ -33,9 +34,14 @@
   }
   
   .product-description {
-    font-size: 16px;
+    text-align: center;
     color: #2D190C;
     margin-top: 10px;
+  }
+
+  .product:hover {
+    transition: 0.3s ease-in;
+    cursor: pointer;
   }
 
   .header {

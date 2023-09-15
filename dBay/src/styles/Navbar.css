@@ -1,24 +1,27 @@
 .navbar {
-  position: fixed;
   width: 100%;
-  top: 0;
-  left: 0;
-  color: white;
-  font-family: 'Exo 2', sans-serif;
-  padding: 1em;
+  height: 80px;
+  background-color: rgb(19, 19, 19);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   }
 
   .navbar a {
     color:linen;
   }
   
-  .nav-list {
-    list-style-type: none;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 0;
-    padding: 0;
+    .links {
+      margin-right: 50px;
+      display: flex;
+      align-items: center;
+    }
+
+  .links a {
+      text-decoration: none;
+      color: white;
+      margin-left: 20px;
+      font-size: 25px;
   }
   
   .nav-item {
@@ -26,9 +29,9 @@
   }
   
   .nav-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
   }
 
    .logo {
@@ -37,7 +40,7 @@
     width: 150px; /* Adjust the width to the desired size */
     height: 150px; /* Maintain the aspect ratio */
     margin-right: 10px; /* Adjust the margin as needed */
-    cursor: pointer;
+    cursor: po;
   }
 
   .Slogan {

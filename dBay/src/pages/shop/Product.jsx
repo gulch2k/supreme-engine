@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext  } from 'react';
 import { useParams } from 'react-router-dom';
-import { CartProvider } from '../../components/CartContext';
-import '../../styles/ProductDetails.css'
+import { CartContext, CartProvider } from '../../components/CartContext'
+import '../../styles/Product.css'
 
-const API_URL = 'https://fakestoreapi.com/';
+const API_URL = 'https://fakestoreapi.com';
 
 function ProductDetails() {
-  const { addToCart } = useContext(CartProvider);
+  const { cart, setCart } = useContext(CartContext);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     async function fetchProduct() {
-      const response = await fetch(`${API_URL}/products/${productId}`);
+      const response = await fetch(`${API_URL}/products/${id}`);
       const productData = await response.json();
       setProduct(productData);
     }
@@ -24,6 +24,17 @@ function ProductDetails() {
     return <div>Loading...</div>;
   }
 
+  const addToCart = () => {
+    if (cart) {
+    const productInCart = cart.find(item => item.id === product.id);
+    if (productInCart) {
+      productInCart.quantity += 1;
+      setCart([...cart]);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }}
+  };
+
   return (
     <div className="product-details">
       <img src={product.image} alt={product.title} className="product-image" />
@@ -32,7 +43,7 @@ function ProductDetails() {
         <p className="product-price">${product.price}</p>
         <p className="product-description">{product.description}</p>
         <p className="product-ratings">{product.ratings}</p>
-        <button onClick={() => addToCart(product)}>Add to Cart</button>
+        <button onClick={addToCart}>Add to Cart</button>
       </div>
     </div>
   );
