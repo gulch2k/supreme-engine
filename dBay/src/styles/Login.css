@@ -2,7 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-form {
+/*form {
     width: 300px;
     padding: 16px;
     background-color: red;
@@ -11,6 +11,8 @@ form {
     border: 1px solid black;
     border-radius: 4px;
 }
+
+*/
 
 input[type=text], input[type=password] {
     width: 89%;
@@ -39,4 +41,10 @@ input[type=submit] {
 
 input[type=submit]:hover {
     opacity: 1;
+}
+
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
