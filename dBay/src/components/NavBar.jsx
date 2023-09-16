@@ -3,8 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 import logo from "../assets/logo.png";
 
-export const Navbar = () =>  {
+export const Navbar = ({setToken}) =>  {
 
+  const logOutHandler = () => {
+    setToken("");
+    localStorage.clear();
+  }
   return (
     <nav>
       <img src={logo} alt="Logo" className="logo" />
@@ -23,7 +27,7 @@ export const Navbar = () =>  {
           <NavLink to="/signup">Signup</NavLink>
         </li>
         <li>
-          <NavLink to="/Logout">Logout</NavLink>
+          <NavLink to="/Logout" onClick={()=>logOutHandler()}>Logout</NavLink>
         </li>
         <li>
           <NavLink to="/cart">Cart</NavLink>
