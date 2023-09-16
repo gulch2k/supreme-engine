@@ -7,11 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import React, { useState } from "react";
 
 function App() {
-  const { token, setToken } = useToken();
-
-  if (!token) {
-    return <LogIn setToken={setToken} />;
-  }
+  const [ token, setToken ] = useState(localStorage.getItem("userToken"));
 
   return (
     <div className="main-container">
