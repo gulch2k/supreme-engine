@@ -24,9 +24,6 @@ export const Navbar = ({setToken}) =>  {
           <NavLink to="/login">Login</NavLink>
         </li>
         <li>
-          <NavLink to="/signup">Signup</NavLink>
-        </li>
-        <li>
           <NavLink to="/Logout" onClick={()=>logOutHandler()}>Logout</NavLink>
         </li>
         <li>
