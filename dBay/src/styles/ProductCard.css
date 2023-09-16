@@ -1,13 +1,16 @@
 .product-card {
-  border-radius: 15px;
-  background-color: blue;
-  width: 300px;
-  height: 350px;
-  margin: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    height: 380px;
+    background: #fff;
+    box-shadow: 3px 3px 5px #000;
+}
+
+.product-card h2 {
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
   
 .product-info {
@@ -17,7 +20,7 @@
   }
   
 .product-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   }

@@ -1,59 +1,63 @@
-.navbar {
-  width: 100%;
-  height: 80px;
-  background-color: rgb(19, 19, 19);
+.active {
+  background-color: dimgrey;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  width: 150px; /* Adjust the width to the desired size */
+  height: 150px; /* Maintain the aspect ratio */
+  margin-right: 10px; /* Adjust the margin as needed */
+  cursor: po;
+}
+
+.Slogan {
+  flex: 1; /* Take up remaining space */
+  font-size: 1.2rem; /* Adjust the font size as needed */
+  margin: 0; /* Remove any default margins */
+  white-space: nowrap; /* Prevent wrap, keep the slogan in a single line */
+  overflow: hidden; /* Hide any overflowed text */
+  text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
+}
+
+span {
+  display: block;
+  height: 2px;
+  background: rgb(0, 102, 255);
+}
+
+nav { 
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  }
+ background-color: rgba(228, 199, 199, 0.63);
+}
 
-  .navbar a {
-    color:linen;
-  }
-  
-    .links {
-      margin-right: 50px;
-      display: flex;
-      align-items: center;
-    }
+nav ul {
+  display: flex;
 
-  .links a {
-      text-decoration: none;
-      color: white;
-      margin-left: 20px;
-      font-size: 25px;
-  }
-  
-  .nav-item {
-    margin-left: 10px;
-  }
-  
-  .nav-link {
-    margin-right: 50px;
-    display: flex;
-    align-items: center;
-  }
+}
 
-   .logo {
-    display: flex;
-    flex-wrap: wrap;
-    width: 150px; /* Adjust the width to the desired size */
-    height: 150px; /* Maintain the aspect ratio */
-    margin-right: 10px; /* Adjust the margin as needed */
-    cursor: po;
-  }
+nav ul li { 
+  list-style-type: none;
 
-  .Slogan {
-    flex: 1; /* Take up remaining space */
-    font-size: 1.2rem; /* Adjust the font size as needed */
-    margin: 0; /* Remove any default margins */
-    white-space: nowrap; /* Prevent wrap, keep the slogan in a single line */
-    overflow: hidden; /* Hide any overflowed text */
-    text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
-  }
+}
 
-  span {
-    display: block;
-    height: 2px;
-    background: rgb(0, 102, 255);
-  }
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+nav ul li a:not(.active):hover {
+  background-color: indianred;
+}

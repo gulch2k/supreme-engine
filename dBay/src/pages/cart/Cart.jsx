@@ -1,22 +1,54 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../../components/CartContext';
+/** @format */
+
+import { useContext } from "react";
+import { Cartcontext } from "../../components/CartContext";
+import "../../styles/Cart.css";
 
 const Cart = () => {
-  const [cart] = useContext(CartContext);
+  const Globalstate = useContext(Cartcontext);
+  console.log(Globalstate);
+  const state = Globalstate.state;
+  const dispatch = Globalstate.dispatch;
 
-  const totalPrice = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
-
+  const total = state.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
   return (
-    <div>
-      <h2>Your Cart</h2>
-      {cart.map((product, index) => (
-        <div key={index}>
-          <h3>{product.title}</h3>
-          <p>{product.price}</p>
-          <p>Quantity: {product.quantity}</p>
+    <div className="cart">
+      {state.map((item, index) => {
+        return (
+          <div className="card" key={index}>
+            <img src={item.image} alt="" />
+            <p>{item.title}</p>
+            <p>{item.quantity * item.price}</p>
+            <div className="quantity">
+              <button
+                onClick={() => dispatch({ type: "INCREASE", payload: item })}>
+                +
+              </button>
+              <p>{item.quantity}</p>
+              <button
+                onClick={() => {
+                  if (item.quantity > 1) {
+                    dispatch({ type: "DECREASE", payload: item });
+                  } else {
+                    dispatch({ type: "REMOVE", payload: item });
+                  }
+                }}>
+                -
+              </button>
+            </div>
+            <h2 onClick={() => dispatch({ type: "REMOVE", payload: item })}>
+              x
+            </h2>
+          </div>
+        );
+      })}
+      {state.length > 0 && (
+        <div className="total">
+          <h2>{total}</h2>
         </div>
-      ))}
-      <p>Total: {totalPrice}</p>
+      )}
     </div>
   );
 };

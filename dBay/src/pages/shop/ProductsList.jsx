@@ -44,17 +44,20 @@ function ProductsList() {
 // "name" is selected, sort alphabetically by product title. If no sort type 
 // is selected, use the filtered products as is.
 
-  const sortedProducts = sortType
-    ? [...filteredProducts].sort((a, b) => {
-        if (sortType === "price") {
-          return a.price - b.price;
-        } else if (sortType === "name") {
-          return a.title.localeCompare(b.title);
-        }
-        return 0;
-      })
-    : filteredProducts;
-
+const sortedProducts = sortType
+? [...filteredProducts].sort((a, b) => {
+    if (sortType === "price") {
+      return a.price - b.price;
+    } else if (sortType === "name") {
+      return a.title.localeCompare(b.title);
+    } 
+    // Add a new condition for sorting by rating
+    else if (sortType === "rating") {
+      return b.rating - a.rating; // for descending sort
+    }
+    return 0;
+  })
+: filteredProducts;
     // Function to handle going back to view all categories. It resets the selected
 // category state to an empty string, which will cause all products to be displayed.
 
@@ -83,6 +86,7 @@ function ProductsList() {
           <option value="">None</option>
           <option value="price">Price</option>
           <option value="name">Name</option>
+          <option value="rating">Rating</option>
         </select>
       </div>
       <div className="productsContainer">
