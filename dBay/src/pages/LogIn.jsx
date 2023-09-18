@@ -57,7 +57,6 @@ async function loginUser(credentials) {
 // Login form component
 const LoginForm = ({ setToken }) => {
   // State for form inputs
-  const [userCarts, setUserCarts] = useState([]);
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [loginSuccess, setLoginSuccess] = useState("");
@@ -79,8 +78,6 @@ const LoginForm = ({ setToken }) => {
     if (token) {
       setToken(token);
       setLoginSuccess("You have successfully logged in!");
-      const carts = await getUserCarts(token); // Replace `userId` with the actual user ID
-      setUserCarts(carts);
       navigate("/");
     } else {
       setLoginSuccess("Login failed. Please try again.");

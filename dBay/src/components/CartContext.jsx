@@ -7,20 +7,24 @@ export const CartProvider = ({ children }) => {
   //cart state
   const [cart, setCart] = useState([]);
 
+  //item amount state 
+
+  const [itemAmount, setItemAmount] = useState(0);
+
   //add to cart
-  const addToCart = (product, id) => {
-    const newItem = { ...product, amount: 1 };
-    const cartItem = cart.find((product) => {
-      return product.id === id;
+  const addToCart = (item, id) => {
+    const newItem = { ...item, amount: 1 };
+    const cartItem = cart.find((item) => {
+      return item.id === id;
     });
 
     //if cart item is already in cart
     if (cartItem) {
-      const newCart = [...cart].map((product) => {
-        if (product.id === id) {
-          return { ...product, amount: cartItem.amount + 1 };
+      const newCart = [...cart].map((item) => {
+        if (item.id === id) {
+          return { ...item, amount: cartItem.amount + 1 };
         } else {
-          return product;
+          return item;
         }
       });
       setCart(newCart);
@@ -31,8 +35,8 @@ export const CartProvider = ({ children }) => {
 
   // remove from cart list
   const removeFromCart = (id) => {
-    const newCart = cart.filter(product => {
-      return product.id === id;
+    const newCart = cart.filter(item => {
+      return item.id === id;
     })
     setCart(newCart);
   };
@@ -44,19 +48,19 @@ export const CartProvider = ({ children }) => {
 
 //increase amount 
 const increaseAmount = (id) => {
-  const productItem = cart.find((product) => product.id === id);
-  addToCart(product, id);
+  const productItem = cart.find((item) => item.id === id);
+  addToCart(productItem, id);
 }
 
 //decrease amount 
 const decreaseAmount = (id) => {
-  const productItem = cart.find((product) => {
-  return product.id === id;
+  const productItem = cart.find((item) => {
+  return item.id === id;
 });
   if (productItem) {
     const newCart = cart.map(item => {
       if (item.id === id) {
-        return {...product, amount: cartItem.amount -1 };
+        return {...item, amount: cartItem.amount -1 };
       } else {
         return item;
       }
