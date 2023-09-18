@@ -1,10 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../../components/CartContext";
 import  CartItem from "./CartItem";
 import "../../styles/Cart.css";
 
 const Cart = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
+  
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      // Update the cart context state with the cart items from localStorage
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
 
   return (
     <div className="cart-container">

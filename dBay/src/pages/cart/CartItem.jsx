@@ -11,8 +11,6 @@ const CartItem = ({ item }) => {
     return (
       <div className="cart-container">
         <div className="cart-item">
-        <h1>Cart Page</h1>
-        <p>Cart ID: {id}</p>
           {/* Cart items */}
           <Link to={`/product/${id}`}>
             <img src={image} alt={title} className="cart-item-image" />

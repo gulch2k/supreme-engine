@@ -28,17 +28,19 @@ export const CartProvider = ({ children }) => {
         }
       });
       setCart(newCart);
+      localStorage.setItem('cart', JSON.stringify(newCart));
     } else {
+      const updatedCart = [...cart, newItem];
       setCart([...cart, newItem]);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   };
 
   // remove from cart list
   const removeFromCart = (id) => {
-    const newCart = cart.filter(item => {
-      return item.id === id;
-    })
-    setCart(newCart);
+    const newCart = cart.filter(item => item.id !== id);
+  setCart(newCart);
+  localStorage.setItem('cart', JSON.stringify(newCart));
   };
 
   //clear cart list 
@@ -60,7 +62,7 @@ const decreaseAmount = (id) => {
   if (productItem) {
     const newCart = cart.map(item => {
       if (item.id === id) {
-        return {...item, amount: cartItem.amount -1 };
+        return {...item, amount: productItem.amount -1 };
       } else {
         return item;
       }
@@ -80,7 +82,8 @@ const decreaseAmount = (id) => {
         removeFromCart, 
         clearCartList, 
         increaseAmount, 
-        decreaseAmount
+        decreaseAmount,
+        setCart
         }}>
         {children}
       </CartContext.Provider>
