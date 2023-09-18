@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext  } from 'react';
-import { Cartcontext } from "../../components/CartContext";
+import { CartContext } from "../../components/CartContext";
 import { useParams } from 'react-router-dom';
 import '../../styles/Product.css'
 
 const API_URL = 'https://fakestoreapi.com';
 
 function ProductDetails() {
-  const { cart, setCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -24,30 +24,15 @@ function ProductDetails() {
     return <div>Loading...</div>;
   }
 
-  const addToCart = () => {
-    if (cart) {
-    const productInCart = cart.find(item => item.id === product.id);
-    if (productInCart) {
-      productInCart.quantity += 1;
-      setCart([...cart]);
-    } else {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    }}
-  };
-
-  const Globalstate = useContext(Cartcontext);
-  const dispatch = Globalstate.dispatch;
-  console.log(Globalstate);
 
   return (
-    <div className="product-details">
+    <div className='product-container'>
       <img src={product.image} alt={product.title} className="product-image" />
       <div className="product-info">
         <h2 className="product-title">{product.title}</h2>
         <p className="product-price">${product.price}</p>
         <p className="product-description">{product.description}</p>
-        <p className="product-ratings">{product.ratings}</p>
-        <button onClick={addToCart}>Add to Cart</button>
+        <button clasname="add-to-cart-button" onClick={()=> addToCart(product, id)}>Add to Cart</button>
       </div>
     </div>
   );

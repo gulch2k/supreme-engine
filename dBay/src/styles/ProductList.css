@@ -22,30 +22,25 @@
     margin: 20px;
   }
 
+  .product-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: all 0.3s ease-in-out;
+  }
+
   
   .product-info {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
-  .product-title {
-    font-size: 24px;
-    font-weight: bold;
-  }
+
   
   .product-price {
-    font-size: 20px;
-    color: #777;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .product-description {
-    text-align: center;
-    color: #2D190C;
-    margin-top: 10px;
   }
 
   .product:hover {

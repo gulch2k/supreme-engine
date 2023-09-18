@@ -31,6 +31,17 @@ const fetchAllUsers = async () => {
 
 fetchAllUsers();
 
+const getUserCarts = async (userId) => {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/carts/user/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    return [];
+  }
+};
+
 
 // LOGGING IN FUNCTIONS
 async function loginUser(credentials) {
@@ -46,6 +57,7 @@ async function loginUser(credentials) {
 // Login form component
 const LoginForm = ({ setToken }) => {
   // State for form inputs
+  const [userCarts, setUserCarts] = useState([]);
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [loginSuccess, setLoginSuccess] = useState("");
@@ -65,14 +77,15 @@ const LoginForm = ({ setToken }) => {
       password,
     });
     if (token) {
-        setToken(token);
-        setLoginSuccess("You have successfully logged in!");
-        navigate("/");
-      } else {
-        setLoginSuccess("Login failed. Please try again.");
-      }
-    };
-
+      setToken(token);
+      setLoginSuccess("You have successfully logged in!");
+      const carts = await getUserCarts(token); // Replace `userId` with the actual user ID
+      setUserCarts(carts);
+      navigate("/");
+    } else {
+      setLoginSuccess("Login failed. Please try again.");
+    }
+  };
   return (
     <div className="login-wrapper">
       <h1>Please Log In</h1>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext} from "react";
 import ProductCard from "../../components/ProductCard";
 import { fetchAllProducts, fetchUniqueCategories } from "../../products";
-import Cart from '../cart/Cart';
+import { CartContext } from "../../components/CartContext";
+//import Cart from '../cart/Cart';
 import "../../styles/ProductList.css";
 
 function ProductsList() {
@@ -10,6 +11,7 @@ function ProductsList() {
   const [cartItems, setCartItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortType, setSortType] = useState("");
+  const { addToCart } = useContext(CartContext);
   
   useEffect(() => {
     const fetchData = async () => {

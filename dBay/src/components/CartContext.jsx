@@ -1,74 +1,84 @@
-// Import necessary libraries
-import { createContext, useReducer } from "react";
+import React, { Children, createContext, useContext, useState } from "react";
 
-// Create a context for the cart
-export const Cartcontext = createContext();
+//create context
+export const CartContext = createContext();
 
-// Define the context provider component
-export const Context = (props) => {
+export const CartProvider = ({ children }) => {
+  //cart state
+  const [cart, setCart] = useState([]);
 
-  // Define the reducer function
-  // This function takes current state and an action as parameters
-  const reducer = (state, action) => {
+  //add to cart
+  const addToCart = (product, id) => {
+    const newItem = { ...product, amount: 1 };
+    const cartItem = cart.find((product) => {
+      return product.id === id;
+    });
 
-    // Use a switch statement to handle different types of actions
-    switch (action.type) {
-
-      case "ADD":
-        // Filter the state array to see if the item already exists
-        const tempstate = state.filter((item) => action.payload.id === item.id);
-        // If the item exists, return the current state
-        if (tempstate.length > 0) {
-          return state;
-        } 
-        // Else add the new item to the state array
-        else {
-          return [...state, action.payload];
+    //if cart item is already in cart
+    if (cartItem) {
+      const newCart = [...cart].map((product) => {
+        if (product.id === id) {
+          return { ...product, amount: cartItem.amount + 1 };
+        } else {
+          return product;
         }
-
-      case "INCREASE":
-        // Map through the state array
-        // If the current item id matches the action payload id, increase the item quantity
-        // Else return the item as is
-        const tempstate1 = state.map((item) => {
-          if (item.id === action.payload.id) {
-            return { ...item, quantity: item.quantity + 1 };
-          } else {
-            return item;
-          }
-        });
-        return tempstate1;
-
-      case "DECREASE":
-        // Similar to the "INCREASE" case, but decrease the item quantity instead
-        const tempstate2 = state.map((item) => {
-          if (item.id === action.payload.id) {
-            return { ...item, quantity: item.quantity - 1 };
-          } else {
-            return item;
-          }
-        });
-        return tempstate2;
-
-      case "REMOVE":
-        // Filter the state array to remove the item with the action payload id
-        const tempstate3 = state.filter(
-          (item) => item.id !== action.payload.id
-        );
-        return tempstate3;
-
-      // Default case returns the current state
-      default:
-        return state;
+      });
+      setCart(newCart);
+    } else {
+      setCart([...cart, newItem]);
     }
   };
 
-  // Use the useReducer hook with the reducer function and an empty initial state
-  const [state, dispatch] = useReducer(reducer, []);
-  const info = { state, dispatch };
+  // remove from cart list
+  const removeFromCart = (id) => {
+    const newCart = cart.filter(product => {
+      return product.id === id;
+    })
+    setCart(newCart);
+  };
 
-  // Return the context provider with the state and dispatch function as its value
-  return (
-    <Cartcontext.Provider value={info}>{props.children}</Cartcontext.Provider>
-  );
+  //clear cart list 
+  const clearCartList = () => {
+    setCart([]);
+  }
+
+//increase amount 
+const increaseAmount = (id) => {
+  const productItem = cart.find((product) => product.id === id);
+  addToCart(product, id);
+}
+
+//decrease amount 
+const decreaseAmount = (id) => {
+  const productItem = cart.find((product) => {
+  return product.id === id;
+});
+  if (productItem) {
+    const newCart = cart.map(item => {
+      if (item.id === id) {
+        return {...product, amount: cartItem.amount -1 };
+      } else {
+        return item;
+      }
+    });
+    setCart(newCart);
+  }
+
+    if (cartItem.amount < 2) {
+      removeFromCart(id);
+  }
 };
+
+    return (
+      <CartContext.Provider value={{ 
+        cart, 
+        addToCart, 
+        removeFromCart, 
+        clearCartList, 
+        increaseAmount, 
+        decreaseAmount
+        }}>
+        {children}
+      </CartContext.Provider>
+    );
+  };
