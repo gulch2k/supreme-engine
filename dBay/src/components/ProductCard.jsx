@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import '../styles/ProductCard.css';
 import {Link} from 'react-router-dom';
 
 function ProductCard({ product }) {
+
   return (
     <div className="product-card">
       <Link to={`/product/${product.id}`}>

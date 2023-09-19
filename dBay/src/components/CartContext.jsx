@@ -36,30 +36,30 @@ export const CartProvider = ({ children }) => {
     }
   }, [cart]);
 
-  //add to cart
-  const addToCart = (item, id) => {
-    const newItem = { ...item, amount: 1 };
-    const cartItem = cart.find((item) => {
-      return item.id === id;
-    });
+//add to cart
+const addToCart = (item, id) => {
+  const cartItem = cart.find((item) => {
+    return item.id === id;
+  });
 
-    //if cart item is already in cart
-    if (cartItem) {
-      const newCart = [...cart].map((item) => {
-        if (item.id === id) {
-          return { ...item, amount: cartItem.amount + 1 };
-        } else {
-          return item;
-        }
-      });
-      setCart(newCart);
-      localStorage.setItem("cart", JSON.stringify(newCart));
-    } else {
-      const updatedCart = [...cart, newItem];
-      setCart([...cart, newItem]);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-    }
-  };
+  //if cart item is already in cart
+  if (cartItem) {
+    const newCart = [...cart].map((item) => {
+      if (item.id === id) {
+        return { ...item, amount: cartItem.amount + 1 };
+      } else {
+        return item;
+      }
+    });
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  } else {
+    const newItem = { ...item, amount: 1 };
+    const updatedCart = [...cart, newItem];
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  }
+};
 
   // remove from cart list
   const removeFromCart = (id) => {
@@ -93,9 +93,10 @@ export const CartProvider = ({ children }) => {
         }
       });
       setCart(newCart);
+      localStorage.setItem("cart", JSON.stringify(newCart)); // Update the cart in local storage
     }
 
-    if (cartItem.amount < 2) {
+    if (productItem.amount < 2) {
       removeFromCart(id);
     }
   };
