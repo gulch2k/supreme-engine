@@ -23,7 +23,7 @@
   }
 
   .product-card img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     object-fit: contain;
     transition: all 0.3s ease-in-out;

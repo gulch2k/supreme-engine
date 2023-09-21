@@ -5,9 +5,9 @@ import { CartContext } from "../../components/CartContext";
 import "../../styles/Cart.css";
 
 const CartItem = ({ item }) => {
+  const { id, title, image, price, amount } = item;
   const { removeFromCart, increaseAmount, decreaseAmount } =
     useContext(CartContext);
-  const { id, title, image, price, amount } = item;
 
   return (
     <div className="cart-container">
@@ -33,7 +33,7 @@ const CartItem = ({ item }) => {
         </button>
 
         {/* Minus button */}
-        <button onClick={() => decreaseAmount(id)} className="add-button">
+        <button onClick={() => decreaseAmount(id)} className="minus-button">
           <ImMinus />
         </button>
         {/* price button */}

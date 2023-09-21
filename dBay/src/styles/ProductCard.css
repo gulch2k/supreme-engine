@@ -5,6 +5,11 @@
     height: 380px;
     background: #fff;
     box-shadow: 3px 3px 5px #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    aspect-ratio: 16 / 9; /* or any other ratio you prefer */
 }
 
 .product-card h2 {

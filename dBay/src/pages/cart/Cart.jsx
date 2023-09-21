@@ -33,11 +33,11 @@ const Cart = () => {
             </li>
           ))}
           <p class="total-amount">Total: $ {parseFloat(total).toFixed(2)}</p>
-          <button className="remove-button" onClick={() => clearCartList()}>
-            REMOVE CART
+          <button className="checkout-button" onClick={() => clearCartList()}>
+            REMOVE CART  ❌
           </button>
           <button className="checkout-button" onClick={handleCheckout}>
-            Checkout
+            CHECKOUT  🛒 
           </button>
           
         </ul>

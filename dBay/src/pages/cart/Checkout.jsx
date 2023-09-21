@@ -6,6 +6,8 @@ const PaymentForm = () => {
   const [paymentInfo, setPaymentInfo] = useState({
     cardNumber: "",
     cardHolder: "",
+    expiryDate: "",
+    cvv: ""
     // Add more payment fields as needed
   });
 

@@ -13,7 +13,10 @@
   }
   
   .checkout-button {
-    padding: 10px 20px;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 14px 20px;
     background-color: #007bff;
     color: #fff;
     border: none;
