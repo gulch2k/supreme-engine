@@ -1,10 +1,16 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect  } from "react";
+import {useNavigate} from "react-router-dom"
 import { CartContext } from "../../components/CartContext";
 import CartItem from "./CartItem";
 import "../../styles/Cart.css";
 
 const Cart = () => {
-  const { cart, setCart, total } = useContext(CartContext);
+  const { cart, setCart, total, clearCartList } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -14,16 +20,6 @@ const Cart = () => {
     }
   }, []);
 
-  const CartItem = ({ item }) => {
-    return (
-      <li>
-        {/* Render the necessary details of the item */}
-        <p>Product ID: {item.productId}</p>
-        <p>Quantity: {item.quantity}</p>
-      </li>
-    );
-  };
-
   return (
     <div>
       <h1>Cart Page</h1>
@@ -32,9 +28,18 @@ const Cart = () => {
       ) : (
         <ul>
           {cart.map((item) => (
-            <CartItem key={item.id} item={item} />
+            <li key={item.id}>
+              <CartItem item={item} />
+            </li>
           ))}
           <p class="total-amount">Total: $ {parseFloat(total).toFixed(2)}</p>
+          <button className="remove-button" onClick={() => clearCartList()}>
+            REMOVE CART
+          </button>
+          <button className="checkout-button" onClick={handleCheckout}>
+            Checkout
+          </button>
+          
         </ul>
       )}
     </div>

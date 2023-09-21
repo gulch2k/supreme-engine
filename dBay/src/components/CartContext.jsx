@@ -69,7 +69,15 @@ const addToCart = (item, id) => {
   };
 
   //clear cart list
-  const clearCartList = () => {
+  const clearCartList = (id) => {
+    const newCart = cart.filter((item) => item.id !== id);
+    setCart([]);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  };
+
+  const checkout = () => {
+    // In a real-world app, this is where you'd send the cart data to the server
+    console.log('Checking out', cart);
     setCart([]);
   };
 
@@ -112,6 +120,7 @@ const addToCart = (item, id) => {
         decreaseAmount,
         setCart,
         total,
+        checkout,
       }}
     >
       {children}

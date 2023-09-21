@@ -32,7 +32,7 @@ function ProductDetails() {
         <h2 className="product-title">{product.title}</h2>
         <p className="product-price">${product.price}</p>
         <p className="product-description">{product.description}</p>
-        <button clasname="add-to-cart-button" onClick={()=> addToCart(product, id)}>Add to Cart</button>
+        <button className="add-to-cart-button" onClick={()=> addToCart(product)}>Add to Cart</button>
       </div>
     </div>
   );
