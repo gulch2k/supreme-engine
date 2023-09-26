@@ -31,18 +31,6 @@ const fetchAllUsers = async () => {
 
 fetchAllUsers();
 
-const getUserCarts = async (userId) => {
-  try {
-    const response = await fetch(`https://fakestoreapi.com/carts/user/${id}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error:", error);
-    return [];
-  }
-};
-
-
 // LOGGING IN FUNCTIONS
 async function loginUser(credentials) {
   return await fetch("https://fakestoreapi.com/auth/login", {
@@ -75,8 +63,10 @@ const LoginForm = ({ setToken }) => {
       username,
       password,
     });
+    console.log(token);
     if (token) {
       setToken(token);
+      localStorage.setItem("userToken",token);
       setLoginSuccess("You have successfully logged in!");
       navigate("/");
     } else {

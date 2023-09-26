@@ -1,8 +1,9 @@
-import { Footer, useToken, Navbar } from "./components/";
+import { Footer, Navbar } from "./components/";
 import ProductsList from "./pages/shop/ProductsList";
 import ProductDetails from "./pages/shop/Product";
 import LogIn from "./pages/LogIn";
 import Logout from "./pages/Logout";
+import Signup from "./pages/Signup";
 import Cart from "./pages/cart/Cart";
 import Checkout from "./pages/cart/Checkout";
 import SuccessPage from "./pages/cart/Checkout";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/login" element={<LogIn setToken={setToken} />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/success" element={<SuccessPage />} />

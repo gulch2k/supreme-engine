@@ -4,12 +4,13 @@ const SignedOutWebsite = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate("/");
+    localStorage.clear();
+    navigate("/login");
   };
 
   return (
     <div>
-      <button></button>
+      <button onClick={handleLogout}>Sign Out</button>
     </div>
   );
 };

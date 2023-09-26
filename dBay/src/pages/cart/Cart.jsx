@@ -1,5 +1,5 @@
-import { useContext, useEffect  } from "react";
-import {useNavigate} from "react-router-dom"
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../components/CartContext";
 import CartItem from "./CartItem";
 import "../../styles/Cart.css";
@@ -7,6 +7,7 @@ import "../../styles/Cart.css";
 const Cart = () => {
   const { cart, setCart, total, clearCartList } = useContext(CartContext);
   const navigate = useNavigate();
+  const [fetchedCarts, setFetchedCarts] = useState([]);
 
   const handleCheckout = () => {
     navigate("/checkout");
@@ -18,7 +19,18 @@ const Cart = () => {
       // Update the cart context state with the cart items from localStorage
       setCart(JSON.parse(storedCart));
     }
+
+    fetch("https://fakestoreapi.com/carts")
+      .then((response) => response.json())
+      .then((carts) => {
+        setFetchedCarts(carts);
+      })
+      .catch((error) => {
+        console.error("Error fetching carts:", error);
+      });
   }, []);
+
+  console.log(fetchedCarts); // Access the fetched carts data here
 
   return (
     <div>
@@ -32,14 +44,13 @@ const Cart = () => {
               <CartItem item={item} />
             </li>
           ))}
-          <p class="total-amount">Total: $ {parseFloat(total).toFixed(2)}</p>
+          <p className="total-amount">Total: $ {parseFloat(total).toFixed(2)}</p>
           <button className="checkout-button" onClick={() => clearCartList()}>
-            REMOVE CART  ❌
+            REMOVE CART ❌
           </button>
           <button className="checkout-button" onClick={handleCheckout}>
-            CHECKOUT  🛒 
+            CHECKOUT 🛒
           </button>
-          
         </ul>
       )}
     </div>
