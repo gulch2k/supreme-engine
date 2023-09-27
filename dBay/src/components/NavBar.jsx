@@ -14,8 +14,8 @@ export const Navbar = ({setToken}) =>  {
   return (
     <nav>
       <img src={logo} alt="Logo" className="logo" />
-      <h1 className="Slogan">We Have KILLER Prices!!🪓🩸</h1>
-      {userToken && <h2>Welcome, {userToken}!</h2>}
+      <h1 className="Slogan">Cry of Commerce; We Have KILLER Prices!!🪓🩸 Prices you would want to KILL FOR!🪓🩸</h1>
+      {userToken && <h4 className="welcome-message">Welcome, {userToken}!</h4>}
       <span className="span-line"></span>
       <ul>
         <li>
@@ -38,9 +38,11 @@ export const Navbar = ({setToken}) =>  {
             <NavLink to="/Logout" onClick={()=>logOutHandler()}>Logout</NavLink>
           </li>
         )}
+        {userToken && (
         <li>
           <NavLink to="/cart">Cart</NavLink>
         </li>
+        )}
       </ul>
     </nav>
   );

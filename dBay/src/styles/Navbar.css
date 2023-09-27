@@ -19,7 +19,7 @@
 
 .Slogan {
   flex: 1; /* Take up remaining space */
-  font-size: 1.2rem; /* Adjust the font size as needed */
+  font-size: 1.1rem; /* Adjust the font size as needed */
   margin: 0; /* Remove any default margins */
   white-space: nowrap; /* Prevent wrap, keep the slogan in a single line */
   overflow: hidden; /* Hide any overflowed text */
