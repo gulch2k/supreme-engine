@@ -8,6 +8,7 @@ const Cart = () => {
   const { cart, setCart, total, clearCartList } = useContext(CartContext);
   const navigate = useNavigate();
   const [fetchedCarts, setFetchedCarts] = useState([]);
+  const [showCatPaws, setShowCatPaws] = useState(false);
 
   const handleCheckout = () => {
     navigate("/checkout");
@@ -51,6 +52,12 @@ const Cart = () => {
           <button className="checkout-button" onClick={handleCheckout}>
             CHECKOUT 🛒
           </button>
+          <button onClick={() => setShowCatPaws(true)}> click me! </button>
+      {showCatPaws && 
+        <CatPaws 
+          onClose={() => setShowCatPaws(false)}
+          fillScreen
+        />}
         </ul>
       )}
     </div>

@@ -3,23 +3,28 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/Checkout.css";
 
 const PaymentForm = () => {
+  const navigate = useNavigate();
   const [paymentInfo, setPaymentInfo] = useState({
+    name: "",
+    email: "",
+    address: "",
+    zipCode: "",
     cardNumber: "",
     cardHolder: "",
     expiryDate: "",
-    cvv: ""
+    cvv: "",
     // Add more payment fields as needed
   });
 
-  const navigate = useNavigate();
+  const handleCheckout = () => {
+    navigate("/success");
+  };
 
   const handlePayment = (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
 
     // Simulate processing the payment
     setTimeout(() => {
-      // After the payment is successfully processed, navigate to the success page
-      navigate("/success");
     }, 2000); // Simulating a 2-second processing time
   };
 
@@ -32,9 +37,49 @@ const PaymentForm = () => {
   };
 
   return (
-    <div>
+    <div className="grid-container">
       <h2>Payment Information</h2>
       <form onSubmit={handlePayment} className="checkout-form">
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={paymentInfo.name}
+            onChange={handleChange}
+            className="checkout-input"
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            type="text"
+            name="email"
+            value={paymentInfo.email}
+            onChange={handleChange}
+            className="checkout-input"
+          />
+        </label>
+        <label>
+          Address:
+          <input
+            type="text"
+            name="address"
+            value={paymentInfo.address}
+            onChange={handleChange}
+            className="checkout-input"
+          />
+        </label>
+        <label>
+          Zip Code:
+          <input
+            type="text"
+            name="zipCode"
+            value={paymentInfo.zipCode}
+            onChange={handleChange}
+            className="checkout-input"
+          />
+        </label>
         <label>
           Card Number:
           <input
@@ -76,11 +121,16 @@ const PaymentForm = () => {
           />
         </label>
         {/* Add more payment fields as needed */}
-        <button type="submit" className="checkout-button">Make Payment</button>
+        <button
+          type="submit"
+          className="checkout-button"
+          onClick={handleCheckout}
+        >
+          Make Payment
+        </button>
       </form>
     </div>
   );
-}
-
+};
 
 export default PaymentForm;

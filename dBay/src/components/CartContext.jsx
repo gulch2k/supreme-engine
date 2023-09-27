@@ -11,7 +11,10 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   //cart state
-  const [cart, setCart] = useState([]);
+
+  const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const [cart, setCart] = useState(savedCart);
 
   //item amount state
 
@@ -29,11 +32,15 @@ export const CartProvider = ({ children }) => {
   // update item amount
   useEffect(() => {
     if (cart) {
-      const amount = cart.reduce((accumulator, currentItem) => {
+      const itemAmount = cart.reduce((accumulator, currentItem) => {
         return accumulator + currentItem.amount;
       }, 0);
-      setItemAmount(amount);
+      setItemAmount(itemAmount);
     }
+  }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
 //add to cart

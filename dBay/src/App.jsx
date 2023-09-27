@@ -9,9 +9,11 @@ import Checkout from "./pages/cart/Checkout";
 import SuccessPage from "./pages/cart/Checkout";
 import { CartProvider } from "./components/";
 import { Route, Routes } from "react-router-dom";
+import { CatPaws } from "react-cat-paws";
 import React, { useState } from "react";
 
 function App() {
+  const [showCatPaws, setShowCatPaws] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("userToken"));
 
   return (
@@ -39,6 +41,12 @@ function App() {
         </Routes>
         <Footer />
       </CartProvider>
+      <button onClick={() => setShowCatPaws(true)}> click me! </button>
+      {showCatPaws && 
+        <CatPaws 
+          onClose={() => setShowCatPaws(false)}
+          fillScreen
+        />}
     </div>
   );
 }
