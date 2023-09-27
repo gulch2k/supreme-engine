@@ -7,6 +7,7 @@ const PaymentForm = () => {
   const [paymentInfo, setPaymentInfo] = useState({
     name: "",
     email: "",
+    city:"",
     address: "",
     zipCode: "",
     cardNumber: "",
@@ -56,6 +57,16 @@ const PaymentForm = () => {
             type="text"
             name="email"
             value={paymentInfo.email}
+            onChange={handleChange}
+            className="checkout-input"
+          />
+        </label>
+        <label>
+          City:
+          <input
+            type="text"
+            name="city"
+            value={paymentInfo.city}
             onChange={handleChange}
             className="checkout-input"
           />
