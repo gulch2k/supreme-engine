@@ -15,7 +15,6 @@ const SignupForm = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email,
         username,
         password,
         // Other form fields...

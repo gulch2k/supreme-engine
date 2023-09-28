@@ -15,7 +15,7 @@ export const Navbar = ({ setToken }) => {
     <nav>
       <img src={logo} alt="Logo" className="logo" />
       <h1 className="Slogan">
-        Cry of Commerce; We Have KILLER Prices!!🪓🩸; Prices you would want to
+      Pyramid Head's Bazaar; We Have KILLER Prices!!🪓🩸; Prices you would want to
         KILL FOR!🪓🩸
       </h1>
       {userToken && <h4 className="welcome-message">Welcome, {userToken}!</h4>}

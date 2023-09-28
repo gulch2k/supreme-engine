@@ -17,16 +17,12 @@ const PaymentForm = () => {
     // Add more payment fields as needed
   });
 
-  const handleCheckout = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const values = Object.fromEntries(data.entries());
+    console.log('submitting', values);
     navigate("/success");
-  };
-
-  const handlePayment = (e) => {
-    e.preventDefault(); // Prevents the default form submission behavior
-
-    // Simulate processing the payment
-    setTimeout(() => {
-    }, 2000); // Simulating a 2-second processing time
   };
 
   const handleChange = (e) => {
@@ -40,7 +36,7 @@ const PaymentForm = () => {
   return (
     <div className="grid-container">
       <h2>Payment Information</h2>
-      <form onSubmit={handlePayment} className="checkout-form">
+      <form className="checkout-form" onSubmit={handleSubmit}>
         <label>
           Name:
           <input
@@ -132,13 +128,7 @@ const PaymentForm = () => {
           />
         </label>
         {/* Add more payment fields as needed */}
-        <button
-          type="submit"
-          className="checkout-button"
-          onClick={handleCheckout}
-        >
-          Make Payment
-        </button>
+        <button type="button" className="checkout-button">Make Payment</button>
       </form>
     </div>
   );
