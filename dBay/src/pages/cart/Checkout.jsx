@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Popup from "reactjs-popup";
 import "../../styles/Checkout.css";
 
 const PaymentForm = () => {
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [paymentInfo, setPaymentInfo] = useState({
     name: "",
     email: "",
@@ -17,12 +19,16 @@ const PaymentForm = () => {
     // Add more payment fields as needed
   });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const values = Object.fromEntries(data.entries());
-    console.log('submitting', values);
-    navigate("/success");
+
+  const handlePayment = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Simulate processing the payment
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsPopupOpen(true);
+    }, 2000); // Simulating a 2-second processing time
   };
 
   const handleChange = (e) => {
@@ -33,10 +39,15 @@ const PaymentForm = () => {
     }));
   };
 
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    navigate("/success");
+  };
+
   return (
     <div className="grid-container">
       <h2>Payment Information</h2>
-      <form className="checkout-form" onSubmit={handleSubmit}>
+      <form className="checkout-form" onSubmit={handlePayment}>
         <label>
           Name:
           <input
@@ -128,7 +139,14 @@ const PaymentForm = () => {
           />
         </label>
         {/* Add more payment fields as needed */}
-        <button type="button" className="checkout-button">Make Payment</button>
+        <button type="submit" className="checkout-button" disabled={isLoading}>
+        {isLoading ? "Processing..." : "Make Payment"}
+      </button>
+      <Popup open={isPopupOpen} onClose={closePopup} className="custom-popup">
+  <div className="custom-popup-content">
+    The order was successfully placed and will arrive in 1 day!
+  </div>
+</Popup>
       </form>
     </div>
   );

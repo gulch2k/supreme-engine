@@ -6,7 +6,7 @@ import Logout from "./pages/Logout";
 import Signup from "./pages/Signup";
 import Cart from "./pages/cart/Cart";
 import Checkout from "./pages/cart/Checkout";
-import SuccessPage from "./pages/cart/Checkout";
+import Success from "./pages/cart/Checkout";
 import { CartProvider } from "./components/";
 import { Route, Routes } from "react-router-dom";
 import { CatPaws } from "react-cat-paws";
@@ -31,22 +31,35 @@ function App() {
               )
             }
           />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/login" element={<LogIn setToken={setToken} />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/success" element={<SuccessPage />} />
+          <Route
+            exact
+            path="/product/:id"
+            name="singleView"
+            element={<ProductDetails />}
+          />
+          <Route
+            exact
+            path="/login"
+            name="login"
+            element={<LogIn setToken={setToken} />}
+          />
+          <Route exact path="/signup" name="signup" element={<Signup />} />
+          <Route exact path="/logout" name="logout" element={<Logout />} />
+          <Route exact path="/cart" name="cart" element={<Cart />} />
+          <Route
+            exact
+            path="/checkout"
+            name="checkout"
+            element={<Checkout />}
+          />
+          <Route exact path="/success" name="success" element={<Success />} />
         </Routes>
         <Footer />
       </CartProvider>
       <button onClick={() => setShowCatPaws(true)}> click me! </button>
-      {showCatPaws && 
-        <CatPaws 
-          onClose={() => setShowCatPaws(false)}
-          fillScreen
-        />}
+      {showCatPaws && (
+        <CatPaws onClose={() => setShowCatPaws(false)} fillScreen />
+      )}
     </div>
   );
 }
