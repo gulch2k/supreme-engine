@@ -46,13 +46,6 @@ const SignupForm = () => {
         className="signup-input"
         placeholder="Password"
       />
-      <input
-        type="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        className="signup-input"
-        placeholder="Confirm Password"
-      />
       <button type="submit" className="signup-button">
         Sign Up
       </button>
